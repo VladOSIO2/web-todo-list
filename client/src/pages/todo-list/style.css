@@ -1,0 +1,17 @@
+.todo_task {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.todo_task_check {
+    transform: scale(200%);
+}
+
+.todo_task_font {
+    font-size: 1.5em;
+}
+
+.todo_task_button {
+    height: 1.6em;
+}
