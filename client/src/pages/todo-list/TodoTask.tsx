@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {TaskModel} from "../../models/TaskModel";
-import {updateTask} from "../../services/TaskService";
+import {taskApi} from "../../services/TaskService";
 import "./style.css";
 
 interface TodoTaskProps {
@@ -19,7 +19,7 @@ export default function TodoTask({taskModel, onDelete}: TodoTaskProps) {
       isCompleted: !task.isCompleted
     }
     setTask(newTask);
-    updateTask(newTask).then();
+    taskApi.updateTask(newTask).then();
   };
 
   return (

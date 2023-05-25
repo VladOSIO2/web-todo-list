@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import TodoTask from "./TodoTask";
-import {getTasks} from "../../services/TaskService";
+import {taskApi} from "../../services/TaskService";
 import {TaskModel} from "../../models/TaskModel";
 import styles from "./style.css";
 
@@ -9,7 +9,7 @@ export default function TodoList() {
   const [tasks, setTasks] = useState<any[]>([]);
 
   useEffect(() => {
-    getTasks()
+    taskApi.getTasks()
       .then(tasks => tasks.sort((t1: TaskModel, t2: TaskModel) => t1.id - t2.id))
       .then(tasks => setTasks(tasks))
   }, [])
