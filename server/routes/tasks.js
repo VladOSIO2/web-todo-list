@@ -30,9 +30,7 @@ router.post('/', async (req, res) => {
         INSERT INTO tasks(name) 
         VALUES ('${req.body.name}') 
         RETURNING ${taskColumns}`
-    console.log(query)
     const result = await client.query(query)
-    console.log(result)
     res.send(result.rows[0])
 });
 
