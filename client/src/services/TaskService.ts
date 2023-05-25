@@ -3,28 +3,23 @@ import {TaskModel} from "../models/TaskModel";
 
 const apiUrl = 'http://localhost:8080/api/tasks'
 
+export const taskApi = {
+  getTasks: () => getTasks(),
+  updateTask: (task: TaskModel) => updateTask(task),
+  deleteTaskById: (task: number) => deleteTaskById(task),
+  createNewTask: (taskName: string) => createNewTask(taskName)
+}
 
-axios.interceptors.request.use(request => {
-  console.log('Starting Request', JSON.stringify(request, null, 2))
-  return request
-})
-
-axios.interceptors.response.use(response => {
-  console.log('Response:', JSON.stringify(response, null, 2))
-  return response
-})
-
-export async function getTasks() {
+async function getTasks() {
   try {
     const response = await axios.get(apiUrl);
     return response.data;
   } catch (error) {
-    throw new Error('Failed to fetch tasks.');
+    throw new Error(`Failed to fetch tasks: ${error}`);
   }
 }
 
-export async function updateTask(task: TaskModel) {
-  console.log(task)
+async function updateTask(task: TaskModel) {
   try {
     await axios.put(`${apiUrl}/${task.id}`, {
       isCompleted: task.isCompleted
@@ -33,4 +28,25 @@ export async function updateTask(task: TaskModel) {
     throw new Error(`Failed to save task ${task.id}: ${error}`);
   }
 }
+
+async function deleteTaskById(taskId: number) {
+  try {
+    await axios.delete(`${apiUrl}/${taskId}`);
+  } catch (error) {
+    throw new Error(`Failed to delete task ${taskId}: ${error}`);
+  }
+}
+
+async function createNewTask(taskName: string) {
+  try {
+    const response = await axios.post(apiUrl, {
+      name: taskName
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(`Failed to save task named ${taskName}: ${error}`);
+  }
+}
+
+
 

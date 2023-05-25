@@ -28,10 +28,10 @@ router.delete('/:taskId', async (req, res) => {
 router.post('/', async (req, res) => {
     const query = `
         INSERT INTO tasks(name) 
-        VALUES (${req.body.name}) 
-        RETURNING tasks.id, tasks.name, tasks.is_completed`
-
-
+        VALUES ('${req.body.name}') 
+        RETURNING ${taskColumns}`
+    const result = await client.query(query)
+    res.send(result.rows[0])
 });
 
 function buildUpdateTaskQuery(body, taskId) {
