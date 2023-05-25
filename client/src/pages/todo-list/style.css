@@ -1,17 +1,60 @@
+.todo_header {
+    text-align: center;
+}
+
+.todo_create_task {
+    display: flex;
+    justify-content: center;
+    height: 2em;
+}
+
+.todo_create_task_btn {
+    margin-left: 3vw;
+}
+
+.todo_create_task_input {
+    width: 70vw;
+    font-size: 1.25em;
+}
+
 .todo_task {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+}
+
+.background_blue {
+    background-color: lightcyan;
+}
+
+.background_white {
+    background-color: white;
 }
 
 .todo_task_check {
     transform: scale(200%);
+    margin-left: 3vw;
+    margin-right: 5vw;
 }
 
 .todo_task_font {
     font-size: 1.5em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    text-decoration-line: none;
 }
 
-.todo_task_button {
-    height: 1.6em;
+.todo_task_font_completed {
+    text-decoration-line: line-through;
+    color: dimgray;
+}
+
+.todo_task_btn {
+    height: 1.8em;
+    margin-left: auto;
+    margin-right: 5vw;
+}
+
+.todo_task_ul {
+    padding-inline-start: 0;
+    list-style: none;
 }
